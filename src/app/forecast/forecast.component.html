@@ -1,0 +1,31 @@
+<div class="container">
+  <div>
+    <mat-card>
+      <mat-card-content class="wrapper" *ngIf="forecast$ | async as forecast">
+        <h3 matLine>Five Day Forecast</h3>
+        {{ forecast.city.name }} ({{ zipcode }})
+        <div class="weather">
+          <div *ngFor="let f of forecast?.list">
+            <div>
+              <mat-list>
+                <mat-list-item>
+                  <p matLine>{{ f.dt * 1000 | dateFormat }}</p>
+                  <p matLine>High: {{ f.temp?.max | number: "1.0-0" }}</p>
+                  <p matLine>Low: {{ f.temp?.min | number: "1.0-0" }}</p>
+                </mat-list-item>
+              </mat-list>
+            </div>
+            <div class="weather-image">
+              <img
+                width="100"
+                height="100"
+                [src]="f.weather[0].icon | imageFormat"
+              />
+            </div>
+          </div>
+        </div>
+        <button color="primary" mat-raised-button (click)="back()">Back</button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

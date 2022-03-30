@@ -1,0 +1,34 @@
+<div class="container">
+  <div>
+    <mat-card class="weather-container">
+      <mat-card-content class="wrapper">
+        <div class="weather">
+          <div>
+            <mat-list>
+              <mat-list-item>
+                <h3 matLine>{{ weather.name }} ({{ weather.zipcode }})</h3>
+                <p matLine>Current condition: {{ weather.weather[0].main }}</p>
+                <p matLine>Temperatures Today:</p>
+                <p matLine>
+                  Current: {{ weather.main.temp }} - Max:
+                  {{ weather.main.temp_max }} - Min:
+                  {{ weather.main.temp_min }}
+                </p>
+                <a matLine [routerLink]="['/forecast/', weather.zipcode]">
+                  Show five day forecast</a
+                >
+              </mat-list-item>
+            </mat-list>
+          </div>
+          <div class="weather-image">
+            <img
+              width="100"
+              height="100"
+              [src]="weather.weather[0].icon | imageFormat"
+            />
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

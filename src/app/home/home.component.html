@@ -1,0 +1,27 @@
+<div class="container">
+  <div>
+    <mat-card>
+      <mat-card-title>Enter Zipcode</mat-card-title>
+      <mat-card-content class="wrapper">
+        <mat-form-field>
+          <mat-label>Zipcode</mat-label>
+          <input type="text" matInput autocomplete="off" #zipcode />
+        </mat-form-field>
+        <button
+          color="primary"
+          mat-raised-button
+          (click)="addLocation(zipcode.value)"
+        >
+          Add Location
+        </button>
+      </mat-card-content>
+    </mat-card>
+    <ng-container *ngIf="weather$ | async as weather">
+      <app-weather [weather]="weather"> </app-weather>
+    </ng-container>
+    <ng-container>
+      <app-stored-weather [storedWeather]="storedZipcodes">
+      </app-stored-weather>
+    </ng-container>
+  </div>
+</div>

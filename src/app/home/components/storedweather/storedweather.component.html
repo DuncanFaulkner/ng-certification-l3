@@ -1,0 +1,33 @@
+<div class="container">
+  <div>
+    <mat-card *ngFor="let w of storedWeather" class="weather-container">
+      <mat-card-content class="wrapper">
+        <div class="weather">
+          <div>
+            <mat-list>
+              <mat-list-item>
+                <h3 matLine>{{ w.name }} ({{ w.zipcode }})</h3>
+                <p matLine>Current condition: {{ w.weather[0].main }}</p>
+                <p matLine>Temperatures Today:</p>
+                <p matLine>
+                  Current: {{ w.main.temp }} - Max: {{ w.main.temp_max }} - Min:
+                  {{ w.main.temp_min }}
+                </p>
+                <a matLine [routerLink]="['/forecast/', w.zipcode]">
+                  Show five day forecast</a
+                >
+              </mat-list-item>
+            </mat-list>
+          </div>
+          <div class="weather-image">
+            <img
+              width="100"
+              height="100"
+              [src]="w.weather[0].icon | imageFormat"
+            />
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
